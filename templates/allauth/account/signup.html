@@ -1,0 +1,18 @@
+{% extends 'allauth_base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+  Sign Up to Jojo's Food
+{% endblock %}
+
+{% block form %}
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button type="submit" class="submit-btn-login">Sign Up</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'account_base.html' %}
+
+
+{% block title %} My Products | Add {% endblock %}
+
+{% block details %}
+  <br>
+  <br>
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+  <input type="submit" value="Create" />
+    </form>
+{% endblock %}

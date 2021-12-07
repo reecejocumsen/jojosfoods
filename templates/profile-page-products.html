@@ -1,0 +1,41 @@
+{% extends 'account_base.html' %}
+
+
+{% block title %} My Products {% endblock %}
+{% block add_edge_button %}
+<div class="button-add">
+    <a href="/accounts/account_details/my_products/add_item">
+    <button class="add-new">Add new Product</button>
+    </a>
+  </div>
+{% endblock %}
+{% block details %}
+
+  <div class="product-container">
+
+      <div class="row">
+          {% for item in products %}
+          <div class="card" style="width: 250px; height: 100%;">
+            <div class="card-container">
+
+            <img src={{item.img_url}} alt="Avatar"
+                 style="width:150px; height: 150px;">
+            <div class="container-products">
+              <a href="/product/{{item.id}}">
+              <p><b>{{item.title}}</b></p></a>
+              <p>${{item.price}}/{{item.unit}}</p>
+              <p>{{item.quantity}} {{item.unit}} left</p>
+              <a href="/accounts/account_details/my_products/edit/{{item.id}}">
+              <button class="edit-product" style='width: 100%; height: 53px;'>Edit Product</button></a>
+              <a href="/accounts/account_details/my_products/delete/{{item.id}}">
+              <button class="delete-item" style='width: 100%;'>Delete Product</button></a>
+            </div>
+            </div>
+          </div>
+          {% empty %}
+          You don't seem to have any products yet. Click the yellow button near the top-right to add a product!
+          {% endfor %}
+      </div>
+  </div>
+  <br>
+{% endblock %}

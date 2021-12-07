@@ -1,0 +1,26 @@
+{% extends 'allauth_base.html' %}
+{% load static %}
+
+{% block title %}
+  Sign Into Jojo's Food
+{% endblock %}
+
+{% block form %}
+<form class="login" method="POST"
+       action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="forgot">
+    <a class="button secondaryAction"
+       href="{% url 'account_reset_password' %}"
+       style="color: rgb(108, 156, 103);">Forgot Password?</a>
+  </div>
+  <br>
+  <button class="submit-btn-login" type="submit">Sign In</button>
+</form>
+<br>
+<h5>Don't have an account yet? <a href="/accounts/signup" style="color: rgb(108, 156, 103);">Sign Up</a></h5>
+{% endblock %}

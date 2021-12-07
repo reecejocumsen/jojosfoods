@@ -1,0 +1,40 @@
+{% extends 'account_base.html' %}
+
+
+{% block title %} My Orders {% endblock %}
+
+{% block details %}
+          <div class="profile-order-container">
+            <div class="inner-order-container">
+
+              <div class="order-container">
+                <table class="table">
+                  <thead class="thead-order" style = "color:white; background-color: #455e44;">
+                    <tr>
+                      <th scope="col">Order ID</th>
+                      <th scope="col">Seller</th>
+                      <th scope="col">Date and Time</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in orders %}
+                      <tr>
+                        <th scope="row">#{{order.id}}</th>
+                        <th scope="row"><a href="/profile/{{order.seller.id}}">{{order.seller.username}}</a></th>
+                        <td>{{order.ordered_date}}</td>
+                        <td>${{order.get_total}}</td>
+                        <td>{{order.get_full_status}}</td>
+                        <td><a href="/accounts/order_history/details/{{order.id}}" style="color: blue">Order Details</a></td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+        {% endblock %}

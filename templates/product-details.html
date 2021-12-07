@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block centretext %}
+{% endblock %}
+{% block content %}
+  <div class="extend-body">
+
+    <br><br>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="container" style="width: 100%; min-height: 200px;">
+          <img src="{{item.img_url}}" class="float-end" style="max-width:400px">
+          </div>
+        </div>
+      <div class="col-md-6">
+        <div class="">
+          <h3><b>{{item.title}}</b></h3>
+          <br>
+
+          
+          <h4>
+          {% if item.quantity %}
+          ${{item.price}}/{{item.unit}} - {{item.quantity}}
+          {{item.unit}} available
+          {% else %}
+            Sorry, this item is sold out.
+          {% endif %}
+          </h4>
+          <br>
+          
+
+          <label>
+            {{item.description}}
+          </label>
+          <br>
+          Sold by: <a href="/profile/{{item.sold_by.id}}">{{item.sold_by}}</a>
+          <br><br>
+
+                <br>
+
+          <form action = "/product/{{item.id}}/add_to_cart" method="POST">
+          {% csrf_token %}
+              <div class="row">
+              <div class="col-md-6">
+                <label><b>Quantity</b></label>
+              </div>
+              <div class="col-md-6">
+                <div class="number-container">
+                  <input name="quantity" type="number" min="1" value="1" class="input-border">
+                </div>
+              </div>
+            </div>
+            <br>
+            <input type="submit" class="product-button" value="ADD TO CART">
+          </form>
+
+          <a href="{{item.id}}/contact_seller" class="seller-links"><b><label>Contact Seller Here</label></b></a>
+
+        </div>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

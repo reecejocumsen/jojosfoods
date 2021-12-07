@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% load dict_ref  %}
+
+{% block heading %}
+Shopping Cart
+{% endblock %}
+{% block subtitle %}
+Look at what we have here.
+{% endblock %}
+{% block content %}
+
+<br><br>
+<div class="grade-container">
+    <div class="row">
+        <div class="col-xl-8 col-xs-12" style="margin-bottom: 20px;">
+            <div class="cart-container">
+                {% for seller, seller_cart in sorted_cart.items %}
+                <h4>Seller: {{seller.username|title}}</h4>
+                    <table class="table-checkout">
+                        <thead>
+                            <tr>
+                                <th class="head">Product</th>
+                                <th class="head">Quantity</th>
+                                <th class="head">Price Per Item</th>
+                                <th class="head">Total</th>
+                                <th class="head"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for oi in seller_cart %}
+                            <tr>
+                                <td class="Tlayout">{{oi.item.title}}</td>
+                                <td class="Tlayout">
+                                    <!--<input type="number" name="name" step="1" min="1" value="{{oi.quantity}}">--> {{oi.quantity}}
+                                </td>
+                                <td class="Tlayout">${{oi.item.price}}</td>
+                                <td>${{oi.total_item_price}}</td>
+                                <td class="Tlayout"><a href="/remove_from_cart/{{oi.id}}">remove</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <div class="total_count" ><b>Total: </b> ${{ sorted_cost|get:seller}}</div>
+                    </table>
+                <br>
+                {% endfor %}
+            </div>
+
+
+        </div>
+
+        <div class="col-xl-4 col-xs-12">
+            <div class="payment-con">
+
+                <h4><b>Payment</b></h4>
+
+                <form action='/success' method='post'>
+                    {% csrf_token %}
+                    <label>Accepted Cards</label>
+                    <br>
+                    <img src="{% static 'img/cards.png' %}" class="cards-payment">
+
+
+                    <div class="payment-form">
+                        <label>Name on Card:</label><br>
+                        <input name="name" id="name" placeholder="Name on card" class="cards-input"
+                            required>
+                        <br>
+                        <label>Card Number:</label><br>
+                        <input name="name" id="name" placeholder="XXXX XXXX XXXX XXXX" class="cards-input"
+                            required>
+                        <br>
+                        <label>Exp Month:</label><br>
+                        <input name="name" id="name" placeholder="September" class="cards-input" required>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="payment-form">
+                                <label>Exp Year:</label><br>
+                                <input name="name" id="name" placeholder="2021" class="cards-inputB"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="payment-form">
+                                <label>CVV:</label><br>
+                                <input name="name" id="name" placeholder="420" class="cards-inputB"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <input type="submit" value="Complete Payment" class="payment-btn" name='order-submitted'>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

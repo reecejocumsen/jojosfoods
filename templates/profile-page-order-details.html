@@ -1,0 +1,77 @@
+{% extends 'account_base.html' %}
+
+
+{% block title %}
+  Orders Details #{{order.id}}
+{% endblock %}
+
+{% block add_edge_button %}
+{% if seller == 0 %}
+  <div class="button-add">
+    <a href="/accounts/order_history/details/{{order.id}}/contact_seller">
+      <button class="add-new">Contact Seller</button>
+    </a>
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block details %}
+  <div style="float: left">
+    {% if is_seller == 0 %}
+      SELLER: <a href="/profiles/{{order.seller.id}}">{{order.seller.username}}</a>
+    {% else %}
+      BUYER: <a href="/profiles/{{order.buyer.id}}">{{order.buyer.username}}</a>
+    {% endif %}
+  </div>
+  <div style="float: right; text-align: right">
+    {% if is_seller == 0 %}
+      STATUS: {{order.get_full_status}}
+    {% else %}
+      <form method="post" action="/accounts/sales_history/details/{{order.id}}/update">
+        {% csrf_token %}
+        <label for="status">STATUS:</label>
+        <select id="status" style="width: auto;" name="status">
+          {% for pair in status_options %}
+            {% if pair.0 == status %}
+              <option value="{{pair.0}}" selected>{{pair.1}}</option>
+            {% else %}
+              <option value="{{pair.0}}">{{pair.1}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <input type="submit" value="🗸">
+      </form>
+    {% endif %}
+  </div>
+  <br>
+
+  <div class="profile-order-container" style = "padding-top: 30px;">
+    <table class="table">
+      <thead class="thead-order" style = "color:white; background-color: #455e44;">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col"> Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order_items %}
+          <tr>
+            <td><a href="/products/{{item.item.id}}">{{item.item.title}}</a></td>
+            <td>{{item.quantity}}</td>
+            <td>${{item.item.price}}</td>
+            <td>${{item.total_item_price}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div style = "text-align:right;">
+    <b><h6>GRAND TOTAL: ${{order.get_total}}</h6></b>
+  </div>
+  {% if is_seller != 0 %}
+    <br>
+    <a href="/accounts/sales_history/details/{{order.id}}/cancel"><button class="delete-item" style="width: auto;">Cancel Order</button></a>
+  {% endif %}
+{% endblock %}

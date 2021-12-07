@@ -1,0 +1,31 @@
+{% extends "account_base.html" %}
+
+{% block title %}
+My Profile
+{% endblock %}
+{% block add_edge_button %}
+  {% if user.is_superuser %}
+    <div class="button-add">
+      <a href="/admin"><button class="add-new">Admin Panel</button></a>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block details %}
+  <div class="row">
+    <div class="col-md-6" style="margin: 10px;">
+      <label><b>Full Name: </b></label>
+      <label>{{user.first_name}} {{user.last_name}}</label>
+      <br><br>
+      <label><b>Email Address:</b></label>
+      <label>{{user.email}}</label>
+      <br><br>
+    </div>
+  </div>
+
+  <a href="/accounts/profile-page-edit"><button class="input-button">Edit Profile</button></a>
+  <a href="/accounts/password/change"><button class="input-button">Change Password</button></a>
+  <a href="/accounts/logout"><button class="input-button">Logout</button></a>
+
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Food Grading
+{% endblock %}
+{% block subtitle %}
+  We help to sell food, to reduce waste.
+{% endblock %}
+{% block content %}
+  <div class="grade-container">
+        <br>
+        <br>
+        <h3><b>How do we grade?</b></h3>
+        <br>
+        <h4>We grade a variety of our food products based on Australias food safety standard (MLA. </h4>
+        <h4>Food safety standards place obligations on Australian food businesses to produce food that is safe and
+          suitable to eat.</h4>
+        <h4>Our business is any business or activity that involves the handling of any type of food for sale, or the
+          sale
+          of food in Australia.</h4>
+        <h4>We place the up most priority to bring you the most affordable cuts direct from farmer to Businesses.</h4>
+        <br><br>
+
+
+        <div class="row">
+          <div class="col-md-1"></div>
+
+          <div class="col-md-4" style="align-content: left; text-align: left;">
+
+            <div class="mt-40 font-size-30 font-bold">Beef</div>
+            <div><b>How we grade beef?</b></div>
+            <br>
+            <p>We grade beef using a fixed measuring chart which determines the quality of the (BMS) Beef Marbling Score
+              and the yield rate of the beef.</p>
+
+            <p> The yield rate indicates how much meat can be taken out from the carcass of the cow.</p>
+
+            <p> The (BMS) Beef Marbling Score indicates the amout of intermuscular fat a piece of meat contains, taking
+              into consideration the cut of the beef.</p>
+
+
+          </div>
+
+          <div class="col-md-6">
+            <br><br><br><br>
+            <img style="max-width: 100%;" src="{% static '/img/grade_beef.png' %}">
+
+          </div>
+        </div>
+
+
+        <br><br>
+
+
+        <div class="row">
+          <div class="col-md-1"></div>
+
+
+          <div class="col-md-5">
+            <br><br><br><br>
+            <img style="max-width: 100%;" src="{% static '/img/grade_pork.jpg' %}">
+            <br><br>
+            <img style="max-width: 80%;" src="{% static '/img/grade_pork2.jpg' %}">
+          </div>
+
+          <div class="col-md-5" style="align-content: left; text-align: left;">
+            <div class="mt-40 font-size-30 font-bold">Pork</div>
+            <div><b>How we grade pork?</b></div>
+            <br>
+            <p>Grading pork is a little different compared to grading beef. Pork is graded based on several qualities
+              the
+              meat possess. </p>
+
+            <p>The first condition of grading would be the "Last Rib Backfat Thickness"(LRBF) which is the thickness of
+              the fat located at the spinne of the pig.</p>
+
+            <p>The second condition of grading would be the degree of muscling of the meat, comparing to beef instead of
+              fat marbling it is more desirable if the pork contain less marble due to the meat containing a higher
+              concentration of fat.</p>
+
+            <p>The third condition of grading would be the quality of fats the meat contains. It is the combination of
+              both the (LRBF) and the degree of muscling the meat contains, the fats of the higher quality animal tend
+              to
+              be able to melt and render at a lower temperature.</p>
+
+
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+
+          <div class="col-md-5" style="align-content: left; text-align: left;">
+
+            <div class="mt-40 font-size-30 font-bold">Poultry</div>
+            <div><b>How we grade poultry?</b></div>
+            <br>
+            <p>Grading poultry has two main conditions which are the size of the bird and the condition of the bird
+              after
+              processing.</p>
+
+            <p>Grading the size is highly dependent on multiple factors which are the species of bird, the age of the
+              bird
+              and the living condition of the bird. Older and more mature birds tend to be less tender compared to
+              yourger
+              aged birds of the same species. Size is also sometimes noticable between different species of birds taking
+              their age into consideration.</p>
+
+            <p>Poultry is graded into 4 categories which is grade A, grade B, grade C and No grade. Grade A would be
+              considered to be in pristine condition without any defects. Grade B would contain minor defects but still
+              in
+              good condition. Grade C would be those chicken with damages meat and with average meat quality. Finally,
+              No
+              grade would be the worse where there are limbs missing and trim of the chicken are left. </p>
+
+
+          </div>
+
+          <div class="col-md-5">
+            <br><br><br><br>
+            <img style="max-width: 100%;" src="{% static '/img/grade_chicken.png' %}">
+            <br><br>
+            <img style="max-width: 100%; max-height:30%;" src="{% static '/img/grade_chicken2.png' %}">
+          </div>
+        </div>
+      </div>
+{% endblock %}

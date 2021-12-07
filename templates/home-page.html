@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block heading %}
+  Welcome
+{% endblock %}
+{% block subtitle %}
+  We help to sell food, to reduce waste.
+{% endblock %}1
+
+{% block content %}
+
+  <div class="mt-40 font-bold">
+    RECENTLY VIEWED
+  </div>
+
+  <div class="flex-1">
+    {% if user.is_authenticated %}
+      {% for item in recently_viewed %}
+        <div class="card" style='height: 400px;'>
+          <form action = "/product/{{item.id}}/add_to_cart" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="addToCart" style="width: 100%" value="&#x1f6d2 Add to cart">
+          </form>
+        <img src="{{item.img_url}}" alt="{{item.img_url}}"
+              style="width:100%; height: 300px;">
+        <div class="container">
+           <a href="product/{{item.pk}}"><h5><b>{{item.title}} (Grade
+             {{item.quality}})</b></h5></a>
+          <p>${{item.price}}/{{item.unit}}</p>
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+    {% else %}
+      <p>Please <a href="accounts/login" style="color: rgb(108, 156, 103);">log in
+      </a> to see your recently viewed items!</p>
+    {% endif %}
+    <br>
+  </div>
+
+  <div class="mt-40 font-bold">
+    NEW PRODUCTS
+  </div>
+
+  <div class="flex-1">
+    {% for item in newest %}
+    <div class="card" style='height: 400px;'>
+      <form action = "/product/{{item.id}}/add_to_cart" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="addToCart" style="width: 100%" value="&#x1f6d2 Add to cart">
+      </form>
+
+
+      <img src="{{item.img_url}}" alt="{{item.img_url}}"
+            style="width:100%; height: 300px;">
+      <div class="container">
+         <a href="product/{{item.pk}}"><h5><b>{{item.title}} (Grade
+           {{item.quality}})</b></h5></a>
+        <p>${{item.price}}/{{item.unit}}</p>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+
+  </div>
+
+{% endblock %}
+

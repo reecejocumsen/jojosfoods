@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block heading %}
+{% endblock %}
+{% block subtitle %}
+{% endblock %}
+{% block content %}
+
+    <div class="container" style="min-height: 575px; text-align: center;">
+
+        <div style="background-image: url({% static 'img/vegetable2-1.png' %}); height: 100px; width: 100%;">
+          <div style= "color: #fff;  height: 100px; width: 100%;" >
+            <div style = "padding-top: 10px;"></div>
+            <br>
+            <h2><b>Contact Us</b></h2>
+          </div>
+        </div>
+
+        <label><b>How can we help? We'd love to hear from you on how to improve
+            our marketplace. </b></label>
+
+
+        <div style = "padding-top: 40px;"></div>
+
+        <div class="row">
+          <div class="col-md-4" style="border-style: groove;padding: 20px;">
+              <div>
+                <div class = "contact-content">
+                  <h4><b>Address</b></h4>
+                  <label><b>Brisbane, Queensland</b></label>
+                </div>
+                <br>
+
+                <div class = "contact-content">
+                  <h4><b>Phone Number</b></h4>
+                  <label><b>+12 345-345-345</b></label>
+                </div>
+                <br>
+
+                <div class = "contact-content">
+                  <h4><b>Email</b></h4>
+                  <label><b>contactjojosfoods@gmail.com</b></label>
+                </div>
+              </div>
+          </div>
+
+          <div class="col-md-8" style="border-style: groove;padding: 20px;">
+            <h4>Give us your feedback</h4>
+            <form action="#" method="post">
+              {% csrf_token %}
+              <input name='email_title' type="text" placeholder="Title" class="form-content">
+              <br>
+              <textarea name='email_body' class="form-content" style="min-height: 250px;" placeholder="Subject"></textarea>
+              <br>
+              <input name='send_email' type="Submit" class="input-button" value="Send" style="width: 80%;" >
+
+            </form>
+          </div>
+        </div>
+
+
+
+    </div>
+{% endblock %}

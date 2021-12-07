@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block heading %}
+  Search Results
+{% endblock %}
+
+{% block subtitle %}
+  Results for "{{request.GET.q}}"
+{% endblock %}
+
+{% block content %}
+  <div class="flex-1" style='min-height: 500px;'>
+    {% for item in results %}
+        <div class="card">
+        <form action = "/product/{{item.id}}/add_to_cart" method="POST">
+          {% csrf_token %}
+          <input type="submit" class="addToCart" style="width: 100%" value="&#x1f6d2 Add to cart">
+        </form>
+
+
+        <img src="{{item.img_url}}" alt="{{item.img_url}}"
+              style="width:100%; height: 80%;">
+        <div class="container">
+           <a href="product/{{item.pk}}"><h5><b>{{item.title}} (Grade
+             {{item.quality}})</b></h5></a>
+          <p>${{item.price}}/{{item.unit}}</p>
+        </div>
+      </div>
+    {% empty %}
+      No results.
+    {% endfor %}
+  </div>
+{% endblock %}

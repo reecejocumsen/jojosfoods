@@ -1,0 +1,30 @@
+{% extends 'allauth_base.html' %}
+{% load static %}
+
+{% block title %}
+Are you sure you want to delete this item?
+{% endblock %}
+
+{% block form %}
+          <div class="card" style="width: 250px; height: 100%; margin: auto">
+            <div class="card-container">
+
+            <img src={{item.img_url}} alt="Avatar"
+                 style="width:150px; height: 150px;">
+            <div class="container-products">
+              <a href="/product/{{item.id}}">
+              <p><b>{{item.title}}</b></p></a>
+              <p>{{item.price}}/{{item.unit}}</p>
+              <p>{{item.quantity}} {{item.unit}} left</p>
+            </div>
+            </div>
+          </div>
+          <br>
+          <form method="post">
+            {% csrf_token %}
+            <input type="submit" class="delete-item" value="Delete item">
+          </form>
+          <a href="/accounts/account_details/my_products">
+            <button class="submit-btn-login" style="width: 20%;">Cancel</button>
+          </a>
+{% endblock %}

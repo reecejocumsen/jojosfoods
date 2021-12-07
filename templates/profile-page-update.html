@@ -1,0 +1,14 @@
+{% extends 'account_base.html' %}
+
+
+{% block title %}
+My Products | Edit
+{% endblock %}
+
+{% block details %}
+<form action="" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Save Changes" />
+</form>
+{% endblock %}

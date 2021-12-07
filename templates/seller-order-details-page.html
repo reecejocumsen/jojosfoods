@@ -1,0 +1,57 @@
+{% extends 'account_base.html %}
+
+{% block title %}
+  Orders Details #000001
+{% endblock %}
+
+{% block details %}
+
+          <div class = "details-header">
+            <div id = "order-status">ORDER STATUS: IN PROGRESS</div>
+
+            <form action="">
+              <!-- <label for= "order-status">ORDER STATUS: </label> -->
+              <div class = "row">
+                <div class = "col-md-9">
+                  <select name="status" id="status">
+                    <option value="1">In Progress</option>
+                    <option value="2">Shipping</option>
+                    <option value="3">Completed</option>
+                  </select>
+                  <div style="padding-top: 5px;"></div>
+                  <input type="submit" value="Submit Status Change">
+                </div>
+                <div class = "col-md-3">
+                  <button class="nav-button">Print Invoice</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+          <div class="profile-order-container" style = "padding-top: 30px;">
+                <table class="table">
+                  <thead class="thead-order" style = "color:white; background-color: #455e44;">
+                    <tr>
+                      <th scope="col">Product</th>
+                      <th scope="col"> Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <td>Salmon - Grade B</td>
+                        <td>2</td>
+                        <td>AUD 12.00</td>
+                        <td>AUD 24.00</td>
+                      </tr>
+                </tbody>
+                </table>
+          </div>
+
+          <div style = "text-align: left;">
+            <b><h6>ADDRESS: 12 House Address, Sydney</h6></b>
+          </div>
+
+{% endblock %}

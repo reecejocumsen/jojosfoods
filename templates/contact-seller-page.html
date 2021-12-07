@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block heading %}
+{% endblock %}
+{% block subtitle %}
+{% endblock %}
+{% block content %}
+
+    <div class="container" style="min-height: 575px; text-align: center;">
+
+        <div style="background-image: url({% static 'img/vegetable2-1.png' %}); height: 100px; width: 100%;">
+          <div style= "color: #fff;  height: 100px; width: 100%;" >
+            <div style = "padding-top: 10px;"></div>
+            <br>
+            <h2><b>Contact {% if order == 0 %}{{item.sold_by}}{%else%}{{order.seller}}{%endif%}</b></h2>
+          </div>
+        </div>
+
+        <label><b></b></label>
+
+
+        <div style = "padding-top: 40px;"></div>
+
+        <div class="row">
+          {% if order == 0 %}
+          <div class="col-md-4" style="border-style: groove;padding: 20px;">
+              <div>
+                <div class = "contact-content">
+                  <h4><b>{{item.title}}</b></h4>
+                  <label><b>{{item.description}}</b></label>
+                </div>
+                <br>
+
+                <div class = "contact-content">
+                  <h4><b>Price</b></h4>
+                  <label><b>{{item.price}} per {{item.unit}}</b></label>
+                </div>
+                <br>
+
+                <div class = "contact-content">
+                  <img src={{item.img_url}} width='100%'/>
+                </div>
+              </div>
+          </div>
+          {% endif %}
+          <div class="col-md-{% if order == 0 %}8{%else%}12{%endif%}" style="border-style: groove;padding: 20px;">
+            <h4>Please write a short message</h4>
+            <form action="#" method="post">
+              {% csrf_token %}
+              <input name='email_title' type="text" placeholder="Title" class="form-content" required>
+              <br>
+              <textarea name='email_body' class="form-content" style="min-height: 250px;" placeholder="Subject" required></textarea>
+              <br>
+              <input name='send_email' type="Submit" class="input-button" value="Send" style="width: 80%;" >
+
+            </form>
+          </div>
+        </div>
+    </div>
+{% endblock %}

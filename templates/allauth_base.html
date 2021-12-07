@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<div class="container-fixed">
+      <div class="logo-center">
+        <a href="/"><img src="{% static 'img/logo_4.png' %}"></a>
+      </div>
+    </div>
+    <br><br><br><br><br>
+{% endblock %}
+{% block centretext %}
+{% endblock %}
+{% block content %}
+  <div id="card" class="card-form" >
+          <div class="card-content">
+            <div class="card-title">
+              <br>
+              <h2 class="login-title">
+                {% block title %}
+                  Title
+                {% endblock %}
+              </h2>
+            </div>
+              {% block form %}
+
+              {% endblock %}
+              <br><br>
+            </div>
+          </div>
+
+{% endblock %}
+          <br><br>
+
+{% block footer %}
+          <div class="terms-condition">
+            <p style="color: gray;">By using Jojo's Food, you agree to our <a
+                    href="/terms_and_conditions"
+                    style="color: rgb(108, 156, 103);">Term of Service</a>
+              and <a href="/privacy_policy"
+                     style="color: rgb(108, 156, 103);">Privacy Policy</a> </p>
+          </div>
+{% endblock %}
+
+
+<script>
+
+  let a = console.log;
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      show_cart: false,
+      cart_list: {},
+      cart_list_is_empty: true
+    },
+    methods: {
+      close_location_model() {
+        a(1);
+        $('#location_modal').modal('hide');
+      },
+      show_location_model() {
+
+        $('#location_modal').modal('show');
+
+      },
+      go_cart_page() {
+        sessionStorage.setItem('cart_list', JSON.stringify(this.cart_list));
+        window.location.href = './payment-page.html'
+      },
+      del(i) {
+        // a(this.cart_list[i]);
+        delete this.cart_list[i];
+        a(this.cart_list);
+        Object.keys(this.cart_list).length == 0 && (this.cart_list_is_empty = true);
+        this.$forceUpdate();
+      },
+      add_product(e) {
+        let t = e.target;
+        a(t.dataset.productId);
+        if (t.dataset.productId !== undefined) {
+          let img = $(t).siblings('img')[0].src;
+          let name = $(t).siblings('.container').find('b').html();
+          let price_text = $(t).siblings('.container').find('p').html();
+          rep = /\$\d+/;
+          let price = rep.exec(price_text)[0].replace(/\$/, '');
+          a(price);
+
+          this.cart_list[t.dataset.productId] = {
+            check: true,
+            img,
+            name,
+            price_text,
+            price,
+            count: 1
+          };
+
+          this.cart_list_is_empty = false;
+
+          $('#asdadsjiahassdi').attr('src', img).css('width', '287px').css('height', 'auto').show().animate({ width: "0", height: "0" }, 500)
+
+        }
+      },
+      show_cart_fn() {
+        this.show_cart = !this.show_cart
+      },
+      close_cart() {
+        this.show_cart = false
+      }
+    },
+    watch: {
+      cart_list_is_empty() { },
+      cart_list: {
+        //深度监听，可监听到对象、数组的变化
+        handler(val, oldVal) {
+          a(val, oldVal, 9999);
+        },
+        deep: true //true 深度监听 }
+      }
+    }
+  });
+</script>
+<!-- <script src="JS/script.js"></script> -->
+<!-- <script src="shopping-cart.js"></script> -->
+
+</html>

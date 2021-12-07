@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block heading %}
+  {{category}}
+{% endblock %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block content %}
+  <div class="flex-1" style='min-height: 500px;'>
+    {% for item in all_products %}
+        <div class="card" style='width: 400px'>
+        <form action = "/product/{{item.id}}/add_to_cart" method="POST">
+          {% csrf_token %}
+          <input type="submit" class="addToCart" style="width: 100%" value="&#x1f6d2 Add to cart">
+        </form>
+
+
+        <img src="{{item.img_url}}" alt="{{item.img_url}}"
+              style="width:100%; height: 80%;">
+        <div class="container">
+           <a href="/product/{{item.pk}}"><h5><b>{{item.title}} (Grade
+             {{item.quality}})</b></h5></a>
+          <p>${{item.price}}/{{item.unit}}</p>
+        </div>
+      </div>
+    {% empty %}
+      Sorry, we don't have any in stock right now.
+    {% endfor %}
+  </div>
+{% endblock %}
